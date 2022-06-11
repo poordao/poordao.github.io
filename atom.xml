@@ -6,7 +6,7 @@
   <link href="http://poordao.cc/atom.xml" rel="self"/>
   
   <link href="http://poordao.cc/"/>
-  <updated>2022-06-10T14:42:19.699Z</updated>
+  <updated>2022-06-11T05:33:11.711Z</updated>
   <id>http://poordao.cc/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>测试发布</title>
+    <link href="http://poordao.cc/posts/32983.html"/>
+    <id>http://poordao.cc/posts/32983.html</id>
+    <published>2022-06-11T05:33:11.711Z</published>
+    <updated>2022-06-11T05:33:11.711Z</updated>
+    
+    <content type="html"><![CDATA[<p>儿子出生后，今天是他人生中第一个端午节，他妈给他手腕绑了花绳绳，这是老家的习俗，当然我也有份，好像从此以后家庭的气氛需要我们来营造了，小时候都是大人在做，现在我们变成了他们。</p><span id="more"></span>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;儿子出生后，今天是他人生中第一个端午节，他妈给他手腕绑了花绳绳，这是老家的习俗，当然我也有份，好像从此以后家庭的气氛需要我们来营造了，小时候都是大人在做，现在我们变成了他们。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="朋友圈" scheme="http://poordao.cc/categories/%E6%9C%8B%E5%8F%8B%E5%9C%88/"/>
+    
+    
+    <category term="说说" scheme="http://poordao.cc/tags/%E8%AF%B4%E8%AF%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>个人网站加入remark42评论功能流程记录</title>
