@@ -165,7 +165,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cl7c1mh48000hl1im8okra60v" class="article article-type-post" itemscope
+    <article id="post-cl7c1piiv000cn5im7pyb555y" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -232,13 +232,14 @@ du --max-depth=1 -h
 <p>du：会显示指定的目录或文件所占用的磁盘空间。<br>–max-depth-1：–max-depth&#x3D;&lt;目录层数&gt; 超过指定层数的目录后，予以忽略。<br>-h：以K，M，G为单位，提高信息的可读性。</p>
 <p>查询到大文件不要着急删除，需要看一下文件有没有被其他应用程序正在使用，比如nginx的日志文件，肯定是一直在使用的，这个时候要么删除后重启nginx，要么直接复写这个文件不用重启。</p>
 <p><strong>查看文件是否有程序正在使用：</strong></p>
-<p><code>lsof fileName</code></p>
+<p>‘’ lsof fileName</p>
 <p><strong>复写日志文件命令：</strong></p>
-<p><code>echo &quot; &quot; &gt; /usr/local/nginx/logs/access.log  </code></p>
+<p>‘’ echo “ “ &gt; &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;logs&#x2F;access.log</p>
 <p>按照以上方法循环可以清除大部分不用的文件。</p>
-<h3 id="删除后没有释放磁盘空间"><a href="#删除后没有释放磁盘空间" class="headerlink" title="删除后没有释放磁盘空间"></a>删除后没有释放磁盘空间</h3><p>原因：有进程正在使用该文件，但是已被删除</p>
+<p>###删除后没有释放磁盘空间</p>
+<p>原因：有进程正在使用该文件，但是已被删除</p>
 <p>可以使用以下命令</p>
-<p><code>lsof -n | grep deleted</code></p>
+<p>‘’ lsof -n | grep deleted</p>
 <p>解释一下：</p>
 <p>lsof：列出当前系统打开文件的工具</p>
 <p>然后我们找到我们已经开始删除的文件，将这个进程使用kill命令关掉。然后我们再是第一步使用的命令查看磁盘情况，磁盘就会恢复空间。</p>
@@ -268,7 +269,7 @@ du --max-depth=1 -h
   
   
     <a href="/posts/54216.html" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-caption">precedente</div>
       <div class="article-nav-title">对比生活</div>
     </a>
   
@@ -276,7 +277,7 @@ du --max-depth=1 -h
 
 
     <section class="share">
-        <div class="share-title">分享</div>
+        <div class="share-title">share</div>
         <a class="share-item" target="_blank"
             href="https://twitter.com/share?text=服务器磁盘满了解决记录 - PoorDao&url=http%3A%2F%2Fpoordao.cc%2Fposts%2F52019.html">
             <box-icon type='logo' name='twitter'></box-icon>
