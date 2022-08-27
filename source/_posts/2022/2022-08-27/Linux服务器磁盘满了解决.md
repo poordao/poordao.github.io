@@ -45,27 +45,28 @@ du：会显示指定的目录或文件所占用的磁盘空间。
 
 **查看文件是否有程序正在使用：**
 
-`lsof fileName`
+'' lsof fileName
 
 **复写日志文件命令：**
 
-`echo " " > /usr/local/nginx/logs/access.log  `
+'' echo " " > /usr/local/nginx/logs/access.log
 
 按照以上方法循环可以清除大部分不用的文件。
 
-### 删除后没有释放磁盘空间
+###删除后没有释放磁盘空间
 
 原因：有进程正在使用该文件，但是已被删除
 
 可以使用以下命令
 
-`lsof -n | grep deleted`
+'' lsof -n | grep deleted
 
 解释一下：
 
 lsof：列出当前系统打开文件的工具
 
 然后我们找到我们已经开始删除的文件，将这个进程使用kill命令关掉。然后我们再是第一步使用的命令查看磁盘情况，磁盘就会恢复空间。
+
 
 
 
