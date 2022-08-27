@@ -149,6 +149,84 @@
   
     
       <article
+id="post-2022-08-27/Linux服务器磁盘满了解决"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/posts/52019.html">服务器磁盘满了解决记录</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <p><strong>磁盘满了！</strong></p>
+<p>这个问题确实以前没有遇到过，不过解决方法也很简单粗暴，就是删文件，但是是因为数据库报错了，才知道磁盘满了，系统盘只有40g，log很快就占满了，但是有些文件确实不敢随意删，你也不知道他会出什么问题，所以只好删nginx和tomcat日志。<br> &lt;!–more–&gt;</p>
+<h1 id="排查方法"><a href="#排查方法" class="headerlink" title="排查方法"></a>排查方法</h1><h3 id="第一步：查看磁盘情况"><a href="#第一步：查看磁盘情况" class="headerlink" title="第一步：查看磁盘情况"></a>第一步：查看磁盘情况</h3><p>我们需要知道哪个磁盘占用的空间最多，然后再按照占用大小来依次清除，可以使用以下命令：</p>
+<pre><code>#查看磁盘状态
+df -h
+</code></pre>
+<p><strong>命令解释：</strong></p>
+<p>df: 用于显示目前在Linux系统上的文件系统的磁盘使用情况统计。<br>-h：以K，M，G为单位，提高信息的可读性。</p>
+<h3 id="第二步：查看文件夹下面的磁盘使用情况"><a href="#第二步：查看文件夹下面的磁盘使用情况" class="headerlink" title="第二步：查看文件夹下面的磁盘使用情况"></a>第二步：查看文件夹下面的磁盘使用情况</h3><p>我们最需要的就是知道当前的文件夹下的磁盘使用情况，这样好知道在哪个文件夹里下手：</p>
+<pre><code>#需要进入跟路径
+cd /
+du --max-depth=1 -h
+</code></pre>
+<p><strong>命令解释：</strong></p>
+<p>du：会显示指定的目录或文件所占用的磁盘空间。<br>–max-depth-1：–max-depth&#x3D;&lt;目录层数&gt; 超过指定层数的目录后，予以忽略。<br>-h：以K，M，G为单位，提高信息的可读性。</p>
+<p>查询到大文件不要着急删除，需要看一下文件有没有被其他应用程序正在使用，比如nginx的日志文件，肯定是一直在使用的，这个时候要么删除后重启nginx，要么直接复写这个文件不用重启。</p>
+<p><strong>查看文件是否有程序正在使用：</strong></p>
+<p><code>lsof fileName</code></p>
+<p><strong>复写日志文件命令：</strong></p>
+<p><code>echo &quot; &quot; &gt; /usr/local/nginx/logs/access.log  </code></p>
+<p>按照以上方法循环可以清除大部分不用的文件。</p>
+<h3 id="删除后没有释放磁盘空间"><a href="#删除后没有释放磁盘空间" class="headerlink" title="删除后没有释放磁盘空间"></a>删除后没有释放磁盘空间</h3><p>原因：有进程正在使用该文件，但是已被删除</p>
+<p>可以使用以下命令</p>
+<p><code>lsof -n | grep deleted</code></p>
+<p>解释一下：</p>
+<p>lsof：列出当前系统打开文件的工具</p>
+<p>然后我们找到我们已经开始删除的文件，将这个进程使用kill命令关掉。然后我们再是第一步使用的命令查看磁盘情况，磁盘就会恢复空间。</p>
+
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-08-27T14:34:13.858Z" itemprop="datePublished">2022-08-27</time>
+</div>
+    
+        <div class="article-category">
+        <a class="article-category-link" href="/categories/Linux/">Linux</a>
+        </div>
+    
+    
+        <div class="article-tag">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+        </div>
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
 id="post-对比生活"
 class="article article-type-post"
 >
@@ -532,6 +610,10 @@ class="article article-type-post"
       <ul>
         
           <li>
+            <a href="/posts/52019.html">服务器磁盘满了解决记录</a>
+          </li>
+        
+          <li>
             <a href="/posts/54216.html">对比生活</a>
           </li>
         
@@ -547,10 +629,6 @@ class="article article-type-post"
             <a href="/posts/35065.html">个人网站加入remark42评论功能流程记录</a>
           </li>
         
-          <li>
-            <a href="/posts/25262.html">儿子的第一个端午节</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -560,7 +638,7 @@ class="article article-type-post"
   <div class="widget-wrap widget-cate">
     <div class="widget-title"><span>Categories</span></div>
     <div class="widget-inner">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%81%E5%BA%A6/">态度</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8B%E5%8F%8B%E5%9C%88/">朋友圈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E5%88%92/">计划</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%80%81%E5%BA%A6/">态度</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E8%AE%B0/">日记</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8B%E5%8F%8B%E5%9C%88/">朋友圈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E5%88%92/">计划</a></li></ul>
     </div>
   </div>
 
@@ -570,7 +648,7 @@ class="article article-type-post"
   <div class="widget-wrap widget-tags">
     <div class="widget-title"><span>Tags</span></div>
     <div class="widget-inner">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%B4%E8%AF%B4/" rel="tag">说说</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%83%B3/" rel="tag">随想</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%B4%E8%AF%B4/" rel="tag">说说</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%83%B3/" rel="tag">随想</a></li></ul>
     </div>
   </div>
 
