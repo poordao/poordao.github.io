@@ -149,7 +149,7 @@
   
     
       <article
-id="post-2022-08-27/Linux服务器磁盘满了解决"
+id="post-2022/2022-08-27/Linux服务器磁盘满了解决"
 class="article article-type-post"
 >
 
@@ -165,33 +165,7 @@ class="article article-type-post"
     <div class="article-entry post-inner-html">
         
         <p><strong>磁盘满了！</strong></p>
-<p>这个问题确实以前没有遇到过，不过解决方法也很简单粗暴，就是删文件，但是是因为数据库报错了，才知道磁盘满了，系统盘只有40g，log很快就占满了，但是有些文件确实不敢随意删，你也不知道他会出什么问题，所以只好删nginx和tomcat日志。<br> &lt;!–more–&gt;</p>
-<h1 id="排查方法"><a href="#排查方法" class="headerlink" title="排查方法"></a>排查方法</h1><h3 id="第一步：查看磁盘情况"><a href="#第一步：查看磁盘情况" class="headerlink" title="第一步：查看磁盘情况"></a>第一步：查看磁盘情况</h3><p>我们需要知道哪个磁盘占用的空间最多，然后再按照占用大小来依次清除，可以使用以下命令：</p>
-<pre><code>#查看磁盘状态
-df -h
-</code></pre>
-<p><strong>命令解释：</strong></p>
-<p>df: 用于显示目前在Linux系统上的文件系统的磁盘使用情况统计。<br>-h：以K，M，G为单位，提高信息的可读性。</p>
-<h3 id="第二步：查看文件夹下面的磁盘使用情况"><a href="#第二步：查看文件夹下面的磁盘使用情况" class="headerlink" title="第二步：查看文件夹下面的磁盘使用情况"></a>第二步：查看文件夹下面的磁盘使用情况</h3><p>我们最需要的就是知道当前的文件夹下的磁盘使用情况，这样好知道在哪个文件夹里下手：</p>
-<pre><code>#需要进入跟路径
-cd /
-du --max-depth=1 -h
-</code></pre>
-<p><strong>命令解释：</strong></p>
-<p>du：会显示指定的目录或文件所占用的磁盘空间。<br>–max-depth-1：–max-depth&#x3D;&lt;目录层数&gt; 超过指定层数的目录后，予以忽略。<br>-h：以K，M，G为单位，提高信息的可读性。</p>
-<p>查询到大文件不要着急删除，需要看一下文件有没有被其他应用程序正在使用，比如nginx的日志文件，肯定是一直在使用的，这个时候要么删除后重启nginx，要么直接复写这个文件不用重启。</p>
-<p><strong>查看文件是否有程序正在使用：</strong></p>
-<p><code>lsof fileName</code></p>
-<p><strong>复写日志文件命令：</strong></p>
-<p><code>echo &quot; &quot; &gt; /usr/local/nginx/logs/access.log  </code></p>
-<p>按照以上方法循环可以清除大部分不用的文件。</p>
-<h3 id="删除后没有释放磁盘空间"><a href="#删除后没有释放磁盘空间" class="headerlink" title="删除后没有释放磁盘空间"></a>删除后没有释放磁盘空间</h3><p>原因：有进程正在使用该文件，但是已被删除</p>
-<p>可以使用以下命令</p>
-<p><code>lsof -n | grep deleted</code></p>
-<p>解释一下：</p>
-<p>lsof：列出当前系统打开文件的工具</p>
-<p>然后我们找到我们已经开始删除的文件，将这个进程使用kill命令关掉。然后我们再是第一步使用的命令查看磁盘情况，磁盘就会恢复空间。</p>
-
+<p>这个问题确实以前没有遇到过，不过解决方法也很简单粗暴，就是删文件，但是是因为数据库报错了，才知道磁盘满了，系统盘只有40g，log很快就占满了，但是有些文件确实不敢随意删，你也不知道他会出什么问题，所以只好删nginx和tomcat日志。<br>
         
     </div>
     </div>
@@ -227,7 +201,7 @@ du --max-depth=1 -h
   
     
       <article
-id="post-对比生活"
+id="post-2022/2022-08-21/对比生活"
 class="article article-type-post"
 >
 
@@ -278,7 +252,7 @@ class="article article-type-post"
   
     
       <article
-id="post-下一个四年计划"
+id="post-2022/2022-07-31/下一个四年计划"
 class="article article-type-post"
 >
 
@@ -329,7 +303,7 @@ class="article article-type-post"
   
     
       <article
-  id="tweet-第一个父亲节"
+  id="tweet-2022/2022-06-19/第一个父亲节"
   class="article article-type-tweet"
 >
 
@@ -375,7 +349,7 @@ class="article article-type-post"
   
     
       <article
-id="post-个人网站加入remark42评论功能流程记录"
+id="post-2022/2022-06-07/个人网站加入remark42评论功能流程记录"
 class="article article-type-post"
 >
 
@@ -437,7 +411,7 @@ class="article article-type-post"
   
     
       <article
-  id="tweet-儿子的第一个端午节"
+  id="tweet-2022/2022-06-04/儿子的第一个端午节"
   class="article article-type-tweet"
 >
 
@@ -483,7 +457,7 @@ class="article article-type-post"
   
     
       <article
-  id="tweet-给灵魂找栖息地"
+  id="tweet-2022/2022-06-02/给灵魂找栖息地"
   class="article article-type-tweet"
 >
 
@@ -529,7 +503,7 @@ class="article article-type-post"
   
     
       <article
-id="post-我的前半生"
+id="post-2022/2022-06-01/我的前半生"
 class="article article-type-post"
 >
 
